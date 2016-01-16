@@ -485,7 +485,7 @@ const GooglePlacesAutocomplete = React.createClass({
 
     let desc = rowData.description.replace(/, United States$/, "").split(", "),
         street = desc[0],
-        city = desc.slice(1);
+        city = desc.slice(1).join(", ");
 
     return (
       <TouchableHighlight
