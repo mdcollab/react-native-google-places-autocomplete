@@ -49,6 +49,12 @@ const defaultStyles = {
   },
   city: {
   },
+  arrow: {
+    position: "absolute",
+    right: 15,
+    top: 20,
+    fontSize: 17,
+  },
   loader: {
     // flex: 1,
     flexDirection: 'row',
@@ -497,6 +503,7 @@ const GooglePlacesAutocomplete = React.createClass({
       >
         <View>
           <View style={[defaultStyles.row, this.props.styles.row, rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {}]}>
+            <Text style={styles.arrow}>&rsaquo;</Text>
             <Text
               style={[defaultStyles.street, this.props.styles.street, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
               numberOfLines={1}
