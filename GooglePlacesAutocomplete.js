@@ -501,7 +501,7 @@ const GooglePlacesAutocomplete = React.createClass({
               numberOfLines={1}
             >{street}</Text>
             <Text
-              style={[{flex: 1}, defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
+              style={[defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
               numberOfLines={1}
             >{city}</Text>
             {this._renderLoader(rowData)}
