@@ -45,7 +45,9 @@ const defaultStyles = {
     height: 1,
     backgroundColor: '#c8c7cc',
   },
-  description: {
+  street: {
+  },
+  city: {
   },
   loader: {
     // flex: 1,
@@ -496,11 +498,11 @@ const GooglePlacesAutocomplete = React.createClass({
         <View>
           <View style={[defaultStyles.row, this.props.styles.row, rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {}]}>
             <Text
-              style={[defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
+              style={[defaultStyles.street, this.props.styles.street, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
               numberOfLines={1}
             >{street}</Text>
             <Text
-              style={[defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
+              style={[defaultStyles.city, this.props.styles.city, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
               numberOfLines={1}
             >{city}</Text>
             {this._renderLoader(rowData)}
