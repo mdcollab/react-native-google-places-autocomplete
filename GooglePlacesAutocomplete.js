@@ -482,7 +482,10 @@ const GooglePlacesAutocomplete = React.createClass({
 
   _renderRow(rowData = {}) {
     rowData.description = rowData.description || rowData.formatted_address || rowData.name;
-    
+
+    let [address, ...cityAndState] =
+      rowData.description.replace(/, United States$/, "").split(", ");
+
     return (
       <TouchableHighlight
         onPress={() =>
@@ -493,11 +496,13 @@ const GooglePlacesAutocomplete = React.createClass({
         <View>
           <View style={[defaultStyles.row, this.props.styles.row, rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {}]}>
             <Text
+              style={[defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
+              numberOfLines={1}
+            >{address}</Text>
+            <Text
               style={[{flex: 1}, defaultStyles.description, this.props.styles.description, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
               numberOfLines={1}
-            >
-              {rowData.description}
-            </Text>
+            >{cityAndState.join(", ")}</Text>
             {this._renderLoader(rowData)}
           </View>
           <View style={[defaultStyles.separator, this.props.styles.separator]} />
