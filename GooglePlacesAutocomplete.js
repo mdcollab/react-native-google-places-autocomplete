@@ -38,28 +38,25 @@ const defaultStyles = {
     // flex: 1,
   },
   row: {
-    padding: 13,
-    height: 44,
   },
   separator: {
     height: 1,
     backgroundColor: '#c8c7cc',
+  },
+  address: {
+    flex: 1,
+    flexDirection: "column",
   },
   street: {
   },
   city: {
   },
   arrow: {
-    position: "absolute",
-    right: 15,
-    top: 20,
     fontSize: 17,
   },
   loader: {
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
     height: 20,
+    marginRight: 20,
   },
   androidLoader: {
     marginRight: -15,
@@ -503,15 +500,18 @@ const GooglePlacesAutocomplete = React.createClass({
       >
         <View>
           <View style={[defaultStyles.row, this.props.styles.row, rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {}]}>
+            <View style={defaultStyles.address}>
+              <Text
+                style={[defaultStyles.street, this.props.styles.street, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
+                numberOfLines={1}
+              >{street}</Text>
+              <Text
+                style={[defaultStyles.city, this.props.styles.city, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
+                numberOfLines={1}
+              >{city}</Text>
+            </View>
+            {this._renderLoader(rowData)}
             <Text style={defaultStyles.arrow}>&rsaquo;</Text>
-            <Text
-              style={[defaultStyles.street, this.props.styles.street, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
-              numberOfLines={1}
-            >{street}</Text>
-            <Text
-              style={[defaultStyles.city, this.props.styles.city, rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}]}
-              numberOfLines={1}
-            >{city}</Text>
           </View>
           <View style={[defaultStyles.separator, this.props.styles.separator]} />
         </View>
