@@ -130,10 +130,15 @@ const GooglePlacesAutocomplete = React.createClass({
       return r1 !== r2;
     }});
     return {
-      text: this.props.getDefaultValue(),
       dataSource: ds.cloneWithRows(this.buildRowsFromResults([])),
       listViewDisplayed: false,
     };
+  },
+
+  componentDidMount() {
+    const defaultValue = this.props.getDefaultValue();
+
+    defaultValue && this._onChangeText(defaultValue);
   },
 
   buildRowsFromResults(results) {
