@@ -1,5 +1,6 @@
 const React = require('react');
 const {TextInput, View, ListView, Image, Text, Dimensions, TouchableHighlight, TouchableWithoutFeedback, Platform, ActivityIndicator, ProgressBarAndroid, PixelRatio} = require('react-native');
+const PropTypes = require('prop-types');
 const Qs = require('qs');
 
 const defaultStyles = {
@@ -66,26 +67,26 @@ const defaultStyles = {
 const GooglePlacesAutocomplete = React.createClass({
 
   propTypes: {
-    placeholder: React.PropTypes.string,
-    onPress: React.PropTypes.func,
-    minLength: React.PropTypes.number,
-    fetchDetails: React.PropTypes.bool,
-    autoFocus: React.PropTypes.bool,
-    getDefaultValue: React.PropTypes.func,
-    timeout: React.PropTypes.number,
-    onTimeout: React.PropTypes.func,
-    query: React.PropTypes.object,
-    GoogleReverseGeocodingQuery: React.PropTypes.object,
-    GooglePlacesSearchQuery: React.PropTypes.object,
-    styles: React.PropTypes.object,
-    textInputProps: React.PropTypes.object,
-    enablePoweredByContainer: React.PropTypes.bool,
-    predefinedPlaces: React.PropTypes.array,
-    currentLocation: React.PropTypes.bool,
-    currentLocationLabel: React.PropTypes.string,
-    nearbyPlacesAPI: React.PropTypes.string,
-    filterReverseGeocodingByTypes: React.PropTypes.array,
-    predefinedPlacesAlwaysVisible: React.PropTypes.bool,
+    placeholder: PropTypes.string,
+    onPress: PropTypes.func,
+    minLength: PropTypes.number,
+    fetchDetails: PropTypes.bool,
+    autoFocus: PropTypes.bool,
+    getDefaultValue: PropTypes.func,
+    timeout: PropTypes.number,
+    onTimeout: PropTypes.func,
+    query: PropTypes.object,
+    GoogleReverseGeocodingQuery: PropTypes.object,
+    GooglePlacesSearchQuery: PropTypes.object,
+    styles: PropTypes.object,
+    textInputProps: PropTypes.object,
+    enablePoweredByContainer: PropTypes.bool,
+    predefinedPlaces: PropTypes.array,
+    currentLocation: PropTypes.bool,
+    currentLocationLabel: PropTypes.string,
+    nearbyPlacesAPI: PropTypes.string,
+    filterReverseGeocodingByTypes: PropTypes.array,
+    predefinedPlacesAlwaysVisible: PropTypes.bool,
   },
 
   getDefaultProps() {
