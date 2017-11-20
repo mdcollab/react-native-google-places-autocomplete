@@ -1,5 +1,6 @@
 const React = require('react');
 const {TextInput, View, ListView, Image, Text, Dimensions, TouchableHighlight, TouchableWithoutFeedback, Platform, ActivityIndicator, ProgressBarAndroid, PixelRatio} = require('react-native');
+const createReactClass = require('create-react-class');
 const PropTypes = require('prop-types');
 const Qs = require('qs');
 
@@ -64,7 +65,7 @@ const defaultStyles = {
   },
 };
 
-const GooglePlacesAutocomplete = React.createClass({
+const GooglePlacesAutocomplete = createReactClass({
 
   propTypes: {
     placeholder: PropTypes.string,
@@ -596,7 +597,7 @@ const GooglePlacesAutocomplete = React.createClass({
 
 // this function is still present in the library to be retrocompatible with version < 1.1.0
 const create = function create(options = {}) {
-  return React.createClass({
+  return createReactClass({
     render() {
       return (
         <GooglePlacesAutocomplete ref="GooglePlacesAutocomplete"

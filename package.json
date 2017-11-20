@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/FaridSafi/react-native-google-places-autocomplete#readme",
   "dependencies": {
+    "create-react-class": "^15.6.2",
     "qs": "^5.2.0"
   },
   "devDependencies": {
