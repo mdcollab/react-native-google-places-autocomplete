@@ -145,7 +145,7 @@ const GooglePlacesAutocomplete = createReactClass({
 
   buildRowsFromResults(results) {
     var res = null;
-    
+
     if (results.length === 0 || this.props.predefinedPlacesAlwaysVisible === true) {
       res = [...this.props.predefinedPlaces];
       if (this.props.currentLocation === true) {
@@ -157,14 +157,14 @@ const GooglePlacesAutocomplete = createReactClass({
     } else {
       res = [];
     }
-    
+
     res = res.map(function(place) {
       return {
         ...place,
         isPredefinedPlace: true,
       }
     });
-    
+
     return [...res, ...results];
   },
 
@@ -187,13 +187,13 @@ const GooglePlacesAutocomplete = createReactClass({
     if (this.refs.textInput) this.refs.textInput.focus();
   },
 
-  /**   
-   * This method is exposed to parent components to blur textInput manually.   
-   * @public   
-   */    
+  /**
+   * This method is exposed to parent components to blur textInput manually.
+   * @public
+   */
   triggerBlur() {
     if (this.refs.textInput) this.refs.textInput.blur();
-  },   
+  },
 
   getCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
@@ -209,8 +209,8 @@ const GooglePlacesAutocomplete = createReactClass({
   },
 
   _enableRowLoader(rowData) {
-    
-    let rows = this.buildRowsFromResults(this._results);    
+
+    let rows = this.buildRowsFromResults(this._results);
     for (let i = 0; i < rows.length; i++) {
       if ((rows[i].place_id === rowData.place_id) || (rows[i].isCurrentLocation === true && rowData.isCurrentLocation === true)) {
         rows[i].isLoading = true;
@@ -285,11 +285,11 @@ const GooglePlacesAutocomplete = createReactClass({
       }));
       request.send();
     } else if (rowData.isCurrentLocation === true) {
-      
+
       // display loader
       this._enableRowLoader(rowData);
-      
-      
+
+
       this.setState({
         text: rowData.description,
       });
@@ -298,7 +298,7 @@ const GooglePlacesAutocomplete = createReactClass({
       delete rowData.isLoading;
 
       this.getCurrentLocation();
-      
+
     } else {
       this.setState({
         text: rowData.description,
@@ -307,16 +307,16 @@ const GooglePlacesAutocomplete = createReactClass({
       this._onBlur();
 
       delete rowData.isLoading;
-      
+
       let predefinedPlace = this._getPredefinedPlace(rowData);
-      
+
       // sending predefinedPlace as details for predefined places
       this.props.onPress(predefinedPlace, predefinedPlace);
     }
   },
   _results: [],
   _requests: [],
-  
+
   _getPredefinedPlace(rowData) {
     if (rowData.isPredefinedPlace !== true) {
       return rowData;
@@ -328,10 +328,10 @@ const GooglePlacesAutocomplete = createReactClass({
     }
     return rowData;
   },
-  
+
   _filterResultsByTypes(responseJSON, types) {
     if (types.length === 0) return responseJSON.results;
-    
+
     var results = [];
     for (let i = 0; i < responseJSON.results.length; i++) {
       let found = false;
@@ -347,8 +347,8 @@ const GooglePlacesAutocomplete = createReactClass({
     }
     return results;
   },
-  
-  
+
+
   _requestNearby(latitude, longitude) {
     this._abortRequests();
     if (latitude !== undefined && longitude !== undefined && latitude !== null && longitude !== null) {
@@ -362,9 +362,9 @@ const GooglePlacesAutocomplete = createReactClass({
         }
         if (request.status === 200) {
           const responseJSON = JSON.parse(request.responseText);
-          
+
           this._disableRowLoaders();
-          
+
           if (typeof responseJSON.results !== 'undefined') {
             if (this.isMounted()) {
               var results = [];
@@ -373,7 +373,7 @@ const GooglePlacesAutocomplete = createReactClass({
               } else {
                 results = responseJSON.results;
               }
-              
+
               this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(this.buildRowsFromResults(results)),
               });
@@ -386,7 +386,7 @@ const GooglePlacesAutocomplete = createReactClass({
           // console.warn("google places autocomplete: request could not be completed or has been aborted");
         }
       };
-      
+
       let url = '';
       if (this.props.nearbyPlacesAPI === 'GoogleReverseGeocoding') {
         // your key must be allowed to use Google Maps Geocoding API
@@ -402,7 +402,7 @@ const GooglePlacesAutocomplete = createReactClass({
           ...this.props.GooglePlacesSearchQuery,
         });
       }
-      
+
       request.open('GET', url);
       request.send();
     } else {
@@ -413,9 +413,9 @@ const GooglePlacesAutocomplete = createReactClass({
     }
   },
 
-  
-  
-  
+
+
+
   _request(text) {
     this._abortRequests();
     if (text.length >= this.props.minLength) {
@@ -460,7 +460,7 @@ const GooglePlacesAutocomplete = createReactClass({
       listViewDisplayed: true,
     });
   },
-  
+
   _getRowLoader() {
     if (Platform.OS === 'android') {
       return (
@@ -477,7 +477,7 @@ const GooglePlacesAutocomplete = createReactClass({
       />
     );
   },
-  
+
   _renderLoader(rowData) {
     if (rowData.isLoading === true) {
       return (
@@ -485,8 +485,8 @@ const GooglePlacesAutocomplete = createReactClass({
           style={[defaultStyles.loader, this.props.styles.loader]}
         >
           {this._getRowLoader()}
-        </View>      
-      );      
+        </View>
+      );
     }
     return null;
   },
@@ -558,7 +558,7 @@ const GooglePlacesAutocomplete = createReactClass({
         >
           <Image
             style={[defaultStyles.powered, this.props.styles.powered]}
-            resizeMode={Image.resizeMode.contain}
+            resizeMode="contain"
             source={require('./images/powered_by_google_on_white.png')}
           />
         </View>
